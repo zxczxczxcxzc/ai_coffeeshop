@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DataAccess {
-	private String url = "jdbc:sqlserver://localhost:1433;databaseName=AI_CoffeeShop";
-	private String userName = "sa";
+	private String url = "jdbc:sqlserver://localhost:1433;databaseName=AI_CoffeeShop";//mở sql lên thay cái tên trong db lại
+	private String userName = "sa";// thay user với pass lại là xong o koK? ok ? ok chưa
 	private String password = "sa123";
 	private static Connection connection = null;
 	private static PreparedStatement pst = null;

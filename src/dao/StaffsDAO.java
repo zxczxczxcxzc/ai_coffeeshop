@@ -108,7 +108,7 @@ public class StaffsDAO {
 			}
 		}
 	}
-
+	
 	public boolean deleteStaff(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement preStm = null;
