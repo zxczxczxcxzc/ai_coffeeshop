@@ -34,6 +34,16 @@ public class TestAPI {
 		System.out.println("Test case name: testGetAllUsers, Result: " + result);
 	}
 
+	private void testGetStaff() {
+		Staffs staff = client.target(REST_SERVICE_URL).path("/{id}").resolveTemplate("id", "2")
+				.request(MediaType.APPLICATION_XML).get(Staffs.class);
+		String result = FAIL;
+		if (staff != null) {
+			result = PASS;
+		}
+		System.out.println("Test case name: testGetStaff, Result: " + result);
+	}
+
 	private void testInsertStaff() {
 		Form form = new Form();
 		form.param("fullname", "Lê Văn A");
@@ -73,7 +83,7 @@ public class TestAPI {
 	}
 
 	private void testDeleteStaff() {
-		String callResult = client.target(REST_SERVICE_URL).path("/{id}").resolveTemplate("id", "2")
+		String callResult = client.target(REST_SERVICE_URL).path("/{id}").resolveTemplate("id", "19")
 				.request(MediaType.APPLICATION_XML).delete(String.class);
 
 		String result = PASS;
@@ -86,7 +96,7 @@ public class TestAPI {
 
 	public static void main(String[] args) {
 		TestAPI test = new TestAPI();
-		test.testDeleteStaff();
+		test.testGetStaff();
 	}
 
 }

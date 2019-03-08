@@ -32,7 +32,6 @@ public class StaffsDAO {
 				staffs.setGender(result.getString("gender"));
 				staffs.setDateOfBirth(result.getString("date_of_birth"));
 				staffs.setPhone(result.getString("phone"));
-				System.out.println(staffs.getFullname());
 				list.add(staffs);
 			}
 		} catch (SQLException e) {
@@ -46,6 +45,39 @@ public class StaffsDAO {
 			}
 		}
 		return list;
+	}
+
+	public Staffs getStaff(String id) throws SQLException {
+		Connection con = instanceSQL.createConnection();
+		ResultSet result = null;
+		Statement stmt = null;
+		Staffs staffs = null;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM staffs WHERE id = " + id;
+			result = stmt.executeQuery(query);
+
+			while (result.next()) {
+				staffs = new Staffs();
+				staffs.setId(result.getString("id"));
+				staffs.setFullname(result.getString("full_name"));
+				staffs.setEmail(result.getString("email"));
+				staffs.setGender(result.getString("gender"));
+				staffs.setDateOfBirth(result.getString("date_of_birth"));
+				staffs.setPhone(result.getString("phone"));
+				System.out.println(staffs.getEmail());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (result != null) {
+				result.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
+		return staffs;
 	}
 
 	public boolean insertStaff(String fullname, String email, String gender, String dateOfBirth, String phone)
@@ -137,7 +169,7 @@ public class StaffsDAO {
 	public static void main(String[] args) {
 		StaffsDAO dao = new StaffsDAO();
 		try {
-			dao.deleteStaff("7");
+			dao.getStaff("2");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

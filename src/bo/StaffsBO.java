@@ -21,6 +21,16 @@ public class StaffsBO {
 		return list;
 	}
 
+	public Staffs getStaff(String id) {
+		Staffs staffs = null;
+		try {
+			staffs = dao.getStaff(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return staffs;
+	}
+
 	public boolean insertStaff(String fullname, String email, String gender, String dateOfBirth, String phone) {
 		try {
 			if (dao.insertStaff(fullname, email, gender, dateOfBirth, phone)) {
